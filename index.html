@@ -1,407 +1,152 @@
-
-
 <!DOCTYPE html>
-
-
-
-    
-    
-    Lava Rápido do Maikinho
-    
-    
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lava Rápido do Maikinho</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: #f0f8fa;
-            color: #222;
-            line-height: 1.6;
+            background-color: #0b0f19;
+            color: #ffffff;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
         header {
-            background: #fff;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background-color: #111827;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #3b82f6;
         }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        header h1 {
+            color: #3b82f6;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #b0d4e3;
-            letter-spacing: -1px;
+        header p {
+            color: #9ca3af;
+            margin-top: 5px;
         }
-
-        .logo span {
-            color: #222;
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
         }
-
-        nav a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 600;
-            margin-left: 30px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #b0d4e3;
-        }
-
-        /* Hero */
         .hero {
-            background: linear-gradient(135deg, #b0d4e3 0%, #d4e9f0 100%);
-            padding: 100px 0;
             text-align: center;
+            background: linear-gradient(135deg, #1e3a8a, #111827);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
         }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            color: #222;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            color: #333;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .hero .btn {
-            display: inline-block;
-            background: #222;
-            color: #fff;
-            padding: 16px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .hero .btn:hover {
-            background: #b0d4e3;
-            color: #222;
-            transform: scale(1.05);
-        }
-
-        /* Serviços */
-        .servicos {
-            padding: 80px 0;
-            background: #fff;
-        }
-
-        .servicos h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: #222;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: #f4fbfc;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: 0.3s;
-            border: 1px solid rgba(176, 212, 227, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(176, 212, 227, 0.3);
-            border-color: #b0d4e3;
-        }
-
-        .card .icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: #555;
-        }
-
-        /* Sobre */
-        .sobre {
-            padding: 80px 0;
-            background: #f0f8fa;
-        }
-
-        .sobre .container {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .sobre-texto {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .sobre-texto h2 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .sobre-texto p {
-            color: #444;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .sobre-texto .highlight {
-            color: #b0d4e3;
-            font-weight: 700;
-        }
-
-        .sobre-imagem {
-            flex: 1;
-            min-width: 280px;
-            background: #b0d4e3;
-            border-radius: 20px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: #fff;
-            background: linear-gradient(145deg, #b0d4e3, #9ac3d6);
-        }
-
-        /* Contato */
-        .contato {
-            padding: 80px 0;
-            background: #fff;
-        }
-
-        .contato h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .contato p {
-            text-align: center;
-            color: #555;
-            font-size: 1.1rem;
-            margin-bottom: 50px;
-        }
-
-        .contato-info {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .info-item {
-            background: #f4fbfc;
-            padding: 30px 40px;
-            border-radius: 20px;
-            text-align: center;
-            min-width: 200px;
-            border: 1px solid rgba(176, 212, 227, 0.3);
-            transition: 0.3s;
-        }
-
-        .info-item:hover {
-            border-color: #b0d4e3;
-            box-shadow: 0 10px 30px rgba(176, 212, 227, 0.2);
-        }
-
-        .info-item .icon {
-            font-size: 2.5rem;
-            display: block;
+        .hero h2 {
+            font-size: 2rem;
             margin-bottom: 15px;
         }
-
-        .info-item a {
-            text-decoration: none;
-            color: #222;
-            font-weight: 600;
+        .hero p {
+            color: #cbd5e1;
             font-size: 1.1rem;
+            margin-bottom: 25px;
         }
-
-        .info-item a:hover {
-            color: #b0d4e3;
+        .servicos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: #ccc;
-            padding: 40px 0;
+        .card {
+            background-color: #1f2937;
+            padding: 30px;
+            border-radius: 10px;
             text-align: center;
+            border: 1px solid #374151;
+            transition: transform 0.3s, border-color 0.3s;
         }
-
-        footer p {
-            font-size: 0.95rem;
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
         }
-
-        footer a {
-            color: #b0d4e3;
+        .card i {
+            font-size: 3rem;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        .card p {
+            color: #9ca3af;
+        }
+        .btn-whatsapp {
+            display: inline-block;
+            background-color: #25d366;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: background 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
-
-        /* Responsivo */
-        @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav a {
-                margin: 0 15px;
-            }
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-            .sobre .container {
-                flex-direction: column;
-                text-align: center;
-            }
-            .contato-info {
-                flex-direction: column;
-                align-items: center;
-            }
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
         }
-    
+        footer {
+            background-color: #111827;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            border-top: 1px solid #374151;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>Lava Rápido do Maikinho</h1>
+        <p>O cuidado e o brilho que o seu veículo merece</p>
+    </header>
 
+    <div class="container">
+        <div class="hero">
+            <h2>Estética Automotiva de Alta Qualidade</h2>
+            <p>Deixe o seu carro novo de novo com quem entende do assunto. Atendimento rápido e lavagem profissional.</p>
+            <a href="https://wa.me" target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Agendar Lavagem
+            </a>
+        </div>
 
-    
-    
-        
-            🚗 Maikinho
-            
-                Serviços
-                Sobre
-                Contato
-            
-        
-    
+        <div class="servicos">
+            <div class="card">
+                <i class="fas fa-car"></i>
+                <h3>Lavagem Completa</h3>
+                <p>Lavagem detalhada da carroceria, aspiração interna, limpeza de painel e aplicação de pretinho nos pneus.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-brush"></i>
+                <h3>Polimento & Cera</h3>
+                <p>Proteção para a pintura do seu veículo, removendo pequenos riscos e devolvendo o brilho original de fábrica.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-soap"></i>
+                <h3>Higienização Interna</h3>
+                <p>Limpeza profunda dos bancos, tetos e carpetes, eliminando manchas, fungos e odores desagradáveis.</p>
+            </div>
+        </div>
+    </div>
 
-    
-    
-        
-            Seu carro brilha como novo
-            Lavagem profissional, higienização interna e cuidados especiais. Agende seu horário e venha conhecer o melhor lava rápido da região.
-            📲 Fale conosco
-        
-    
+    <footer>
+        <p>&copy; 2026 Lava Rápido do Maikinho - Todos os direitos reservados.</p>
+    </footer>
 
-    
-    
-        
-            Nossos Serviços
-            
-                
-                    🧼
-                    Lavagem Completa
-                    Lavagem externa detalhada, incluindo rodas e caixa de rodas.
-                
-                
-                    ✨
-                    Higienização Interna
-                    Aspiração profunda, limpeza de bancos e painel, removendo odores.
-                
-                
-                    🛡️
-                    Proteção de Pintura
-                    Cera líquida de alta durabilidade e revitalização do brilho.
-                
-                
-                    💨
-                    Lavagem a Seco
-                    Opção ecológica com baixo consumo de água e resultados impecáveis.
-                
-            
-        
-    
-
-    
-    
-        
-            
-                Mais que um lava rápido, uma paixão por carros
-                O Lava Rápido do Maikinho nasceu da vontade de oferecer um serviço diferenciado, com atenção aos detalhes e produtos de primeira linha. Aqui seu veículo é tratado com o cuidado que merece.
-                ✓ Atendimento personalizado✓ Produtos biodegradáveis✓ Equipe treinada e apaixonada
-            
-            🧽🚙
-        
-    
-
-    
-    
-        
-            Entre em contato
-            Agende seu horário ou tire suas dúvidas — respondemos rápido!
-            
-                
-                    📞
-                    (11) 99999-9999
-                
-                
-                    💬
-                    WhatsApp
-                
-                
-                    📍
-                    Rua das Lavagens, 123Jardim Limpeza, SP
-                
-            
-        
-    
-
-    
-    
-        
-            © 2025 Lava Rápido do Maikinho — Feito com 💙 e muito sabão
-            📲 Agende pelo WhatsApp
-        
-    
-
-
-
+</body>
 </html>
-
