@@ -7,7 +7,7 @@
     <!-- Ícones e Fontes -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        /* Estilos Globais e Animações */
+        /* Estilos Globais */
         * {
             margin: 0;
             padding: 0;
@@ -53,7 +53,7 @@
             animation: pulse 2s infinite;
         }
         
-        /* Menu Hamburger Interativo */
+        /* Menu Hamburger */
         .nav-container {
             position: relative;
         }
@@ -96,24 +96,23 @@
             color: #3b82f6;
         }
 
-        /* Banner com Degradê Tecnológico Seguro */
+        /* Novo Banner de Carro Sendo Lavado */
         .hero-banner {
             position: relative;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
             padding-top: 80px;
-            background: radial-gradient(circle, #1e3a8a 0%, #0b0f19 100%);
+            background: linear-gradient(rgba(11, 15, 25, 0.5), rgba(11, 15, 25, 0.95)), 
+                        url('https://unsplash.com') center/cover no-repeat;
         }
         .hero-content {
             position: relative;
             z-index: 3;
             max-width: 800px;
             padding: 20px;
-            animation: zoomUp 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
         }
         .location-tag {
             display: inline-block;
@@ -121,14 +120,14 @@
             padding: 8px 20px;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 25px;
             box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
         }
         .hero-content h2 {
             font-size: 2.8rem;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.7);
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
         }
         
         /* Seções Gerais */
@@ -275,7 +274,7 @@
             font-style: italic;
         }
 
-        /* Modal de Login Admin Oculto */
+        /* Modal de Login Admin */
         .admin-modal {
             display: none;
             position: fixed;
