@@ -3,150 +3,356 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lava Rápido do Maikinho</title>
+    <title>Lava Rápido do Maiquinho</title>
+    <!-- Ícones e Fontes -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
+        /* Estilos Globais e Animações */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
         body {
             background-color: #0b0f19;
             color: #ffffff;
+            overflow-x: hidden;
         }
+        
+        /* Cabeçalho Fixo */
         header {
-            background-color: #111827;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid #3b82f6;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid #2563eb;
         }
-        header h1 {
-            color: #3b82f6;
-            font-size: 2.5rem;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-container h1 {
+            font-size: 1.3rem;
+            color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
-        header p {
-            color: #9ca3af;
-            margin-top: 5px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        .hero {
-            text-align: center;
-            background: linear-gradient(135deg, #1e3a8a, #111827);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            margin-bottom: 40px;
-        }
-        .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        .hero p {
-            color: #cbd5e1;
+        .verified-badge {
+            color: #3b82f6;
             font-size: 1.1rem;
-            margin-bottom: 25px;
+            animation: pulse 2s infinite;
         }
-        .servicos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+        
+        /* Menu Hamburger Interativo */
+        .nav-container {
+            position: relative;
         }
-        .card {
+        .menu-toggle {
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+        .menu-toggle:hover {
+            color: #3b82f6;
+        }
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            background-color: #111827;
+            border: 1px solid #2563eb;
+            border-radius: 8px;
+            width: 200px;
+            list-style: none;
+            padding: 10px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .nav-menu.active {
+            display: block;
+        }
+        .nav-menu li a {
+            display: block;
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+        .nav-menu li a:hover {
             background-color: #1f2937;
-            padding: 30px;
-            border-radius: 10px;
+            color: #3b82f6;
+        }
+
+        /* Banner Zoom Planeta Terra */
+        .hero-banner {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border: 1px solid #374151;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        .earth-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black url('https://unsplash.com') center/cover no-repeat;
+            z-index: 1;
+            transform: scale(1);
+            animation: zoomEarth 4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(11,15,25,0.4), rgba(11,15,25,0.95));
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 2.5s forwards;
+        }
+        .location-tag {
+            display: inline-block;
+            background-color: #2563eb;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+        }
+        .hero-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.7);
+        }
+        
+        /* Seções Gerais */
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative;
+            text-transform: uppercase;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #2563eb;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Sobre Nós */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            font-size: 1.1rem;
+            color: #d1d5db;
+            line-height: 1.8;
+        }
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 12px;
+            border: 2px solid #1e3a8a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            overflow: hidden;
             transition: transform 0.3s, border-color 0.3s;
         }
-        .card:hover {
+        .service-card:hover {
             transform: translateY(-5px);
-            border-color: #3b82f6;
+            border-color: #2563eb;
         }
-        .card i {
-            font-size: 3rem;
-            color: #3b82f6;
+        .service-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-info {
+            padding: 25px;
+            text-align: center;
+        }
+        .service-info i {
+            font-size: 2.5rem;
+            color: #2563eb;
             margin-bottom: 15px;
         }
-        .card h3 {
+        .service-info h3 {
             margin-bottom: 10px;
             font-size: 1.4rem;
         }
-        .card p {
+        .service-info p {
             color: #9ca3af;
         }
-        .btn-whatsapp {
-            display: inline-block;
-            background-color: #25d366;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            transition: background 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-        .btn-whatsapp:hover {
-            background-color: #20ba5a;
-        }
-        footer {
+
+        /* Carrossel Google Reviews */
+        .reviews-section {
             background-color: #111827;
-            text-align: center;
-            padding: 20px;
-            margin-top: 60px;
-            border-top: 1px solid #374151;
-            color: #6b7280;
+            padding: 60px 0;
+            overflow: hidden;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
         }
-    </style>
-</head>
-<body>
+        .google-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .google-header i {
+            color: #4285F4;
+            font-size: 2rem;
+            margin-right: 5px;
+        }
+        .reviews-wrapper {
+            display: flex;
+            width: 200%;
+            animation: scrollReviews 25s linear infinite;
+        }
+        .reviews-wrapper:hover {
+            animation-play-state: paused;
+        }
+        .review-card {
+            background-color: #1f2937;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 15px;
+            width: 320px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .review-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .review-user img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .stars {
+            color: #f59e0b;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .review-text {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
 
-    <header>
-        <h1>Lava Rápido do Maikinho</h1>
-        <p>O cuidado e o brilho que o seu veículo merece</p>
-    </header>
-
-    <div class="container">
-        <div class="hero">
-            <h2>Estética Automotiva de Alta Qualidade</h2>
-            <p>Deixe o seu carro novo de novo com quem entende do assunto. Atendimento rápido e lavagem profissional.</p>
-            <a href="https://wa.me" target="_blank" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> Agendar Lavagem
-            </a>
-        </div>
-
-        <div class="servicos">
-            <div class="card">
-                <i class="fas fa-car"></i>
-                <h3>Lavagem Completa</h3>
-                <p>Lavagem detalhada da carroceria, aspiração interna, limpeza de painel e aplicação de pretinho nos pneus.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-brush"></i>
-                <h3>Polimento & Cera</h3>
-                <p>Proteção para a pintura do seu veículo, removendo pequenos riscos e devolvendo o brilho original de fábrica.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-soap"></i>
-                <h3>Higienização Interna</h3>
-                <p>Limpeza profunda dos bancos, tetos e carpetes, eliminando manchas, fungos e odores desagradáveis.</p>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Lava Rápido do Maikinho - Todos os direitos reservados.</p>
-    </footer>
-
-</body>
-</html>
+        /* Modal de Login Admin */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        .admin-modal.active {
+            display: flex;
+        }
+        .login-box {
+            background-color: #111827;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+            text-align: center;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+        .close-modal:hover {
+            color: #ef4444;
+        }
+        .login-box h3 {
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            color: #3b82f6;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 6px;
